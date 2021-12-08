@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heroflix/pages/auth_login.dart';
 import 'package:heroflix/providers/auth.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,7 @@ class _RegisterState extends State<Register>{
     } catch(err) {
       if (err['email'] != null) {
         return _showMsg(err['email'].join(', ').toString());
-      } else {
+      } else if (err['password'] != null) {
         return _showMsg(err['password'].join(', ').toString());
       }
     }

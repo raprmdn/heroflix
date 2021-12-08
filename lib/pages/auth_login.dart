@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:heroflix/pages/auth_register.dart';
+import 'package:heroflix/providers/auth.dart';
+import 'package:provider/provider.dart';
 import '../theme.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -27,9 +30,27 @@ class _LoginPageState extends State<LoginPage> {
       MaterialPageRoute(builder: (context) => Register()),
     );
 
-    ScaffoldMessenger.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text('$result')));
+    if (result != null) {
+      _showMsg(result);
+    }
+  }
+
+  _signIn(String email, String password) async {
+    try {
+      var resp = await Provider.of<Auth>(context, listen: false).signIn(email, password);
+
+      ScaffoldMessenger.of(context)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(resp['message'])));
+
+      await Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => HomePage(),
+      ));
+    } catch(err) {
+      if (err['email'] != null) {
+        return _showMsg(err['email'].join(', ').toString());
+      }
+    }
   }
 
   _showMsg(msg) {
@@ -128,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: InkWell(
                     onTap: () {
                       if (_formKey.currentState.validate()) {
-
+                        _signIn(emailController.text, passwordController.text);
                       }
                     },
                     borderRadius: BorderRadius.circular(14.0),

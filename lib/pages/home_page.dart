@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:heroflix/pages/auth_login.dart';
+import 'package:heroflix/providers/auth.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/products.dart';
@@ -16,6 +18,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isInit = true;
   bool isLoading = false;
+
+  _logout() async {
+    var resp = await Provider.of<Auth>(context, listen: false).logout();
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(resp['message'])));
+
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => LoginPage(),
+    ));
+  }
 
   @override
   void didChangeDependencies() {
@@ -61,7 +74,12 @@ class _HomePageState extends State<HomePage> {
     final prov = Provider.of<Products>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Products"),
+        leading: IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () => _logout()
+        ),
+        title: Text("All Movies"),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.add),
