@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:heroflix/pages/auth_login.dart';
+import 'package:heroflix/pages/movie_detail.dart';
 import 'package:heroflix/providers/auth.dart';
+import 'package:heroflix/providers/movies.dart';
 import 'package:provider/provider.dart';
 
 import './providers/products.dart';
@@ -20,15 +23,25 @@ class MyApp extends StatelessWidget {
           create: (ctx) => Auth(),
         ),
         ChangeNotifierProvider(
+          create: (ctx) => Movies(),
+        ),
+        ChangeNotifierProvider(
           create: (ctx) => Products(),
         )
     ],
       builder: (context, child) => MaterialApp(
+        theme: ThemeData(
+          textTheme: GoogleFonts.interTextTheme(
+            Theme.of(context).textTheme,
+          ),
+          scaffoldBackgroundColor: const Color(0xFF37325B),
+        ),
         debugShowCheckedModeBanner: false,
         home: LoginPage(),
         routes: {
           AddProductPage.route: (ctx) => AddProductPage(),
           EditProductPage.route: (ctx) => EditProductPage(),
+          // MovieDetail.route: (ctx) => MovieDetail(),
         },
       ),
     );
