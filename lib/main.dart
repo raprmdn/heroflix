@@ -34,7 +34,10 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.interTextTheme(
             Theme.of(context).textTheme,
           ),
-          scaffoldBackgroundColor: const Color(0xFF37325B),
+          appBarTheme: AppBarTheme(
+            color: const Color(0xff1B1E25),
+          ),
+          scaffoldBackgroundColor: const Color(0xff1B1E25),
         ),
         debugShowCheckedModeBanner: false,
         home: LoginPage(),

@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                   if (index == 0) {
                     return Column(
                       children: [
-                        SizedBox(height: 25,),
+                        SizedBox(height: 15,),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5,),
                           child: Row(
@@ -116,6 +116,7 @@ class _HomePageState extends State<HomePage> {
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
+                                  color: const Color(0xffffffff),
                                 ),
                               ),
                             ],
@@ -126,9 +127,84 @@ class _HomePageState extends State<HomePage> {
                             padding: const EdgeInsets.all(8.0),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetail()));
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => MovieDetail(movies: snapshot.data['data'][index]))
+                                );
                               },
                               child: Card(
+                                color: const Color(0xff262c32),
+                                shadowColor: const Color(0x8a323250),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(9.0),
+                                ),
+                                elevation: 10,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 150,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(9),
+                                            topLeft: Radius.circular(9),
+                                          ),
+                                          image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(snapshot.data['data'][index]['thumbnail'])
+                                          )
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      height: 150,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            snapshot.data['data'][index]['title']
+                                                + (' (${snapshot.data['data'][index]['release_year']})'),
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: const Color(0xffffffff),
+                                            ),
+                                          ),
+                                          SizedBox(height: 10,),
+                                          Container(
+                                            width: 240,
+                                            child: Text(
+                                              snapshot.data['data'][index]['description'],
+                                              style: TextStyle(
+                                                color: const Color(0xffffffff),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => MovieDetail(movies: snapshot.data['data'][index]))
+                                );
+                              },
+                              child: Card(
+                                color: const Color(0xff262c32),
+                                shadowColor: const Color(0x8a323250),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(9.0),
                                 ),
@@ -160,7 +236,8 @@ class _HomePageState extends State<HomePage> {
                                                 + (' (${snapshot.data['data'][index]['release_year']})'),
                                             style: TextStyle(
                                                 fontSize: 16,
-                                                fontWeight: FontWeight.bold
+                                                fontWeight: FontWeight.bold,
+                                                color: const Color(0xffffffff),
                                             ),
                                           ),
                                           SizedBox(height: 10,),
@@ -168,6 +245,9 @@ class _HomePageState extends State<HomePage> {
                                             width: 240,
                                             child: Text(
                                               snapshot.data['data'][index]['description'],
+                                              style: TextStyle(
+                                                color: const Color(0xffffffff),
+                                              ),
                                             ),
                                           )
                                         ],
@@ -175,64 +255,6 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ],
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  } else {
-                    return Column(
-                      children: [
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(9.0),
-                              ),
-                              elevation: 7,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 150,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(9),
-                                          topLeft: Radius.circular(9),
-                                        ),
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: NetworkImage(snapshot.data['data'][index]['thumbnail'])
-                                        )
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.all(10),
-                                    height: 150,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          snapshot.data['data'][index]['title']
-                                              + (' (${snapshot.data['data'][index]['release_year']})'),
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold
-                                          ),
-                                        ),
-                                        SizedBox(height: 10,),
-                                        Container(
-                                          width: 240,
-                                          child: Text(
-                                            snapshot.data['data'][index]['description'],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
                               ),
                             ),
                           ),
