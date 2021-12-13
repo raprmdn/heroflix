@@ -1,16 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:heroflix/pages/edit_movie.dart';
+import 'package:heroflix/providers/movies.dart';
+import 'package:provider/provider.dart';
 
-class MovieDetail extends StatelessWidget {
-  final Map movies;
+class MovieDetail extends StatefulWidget {
+  Map movies;
   MovieDetail({@required this.movies});
 
   @override
+  State<MovieDetail> createState() => _MovieDetailState();
+}
+
+class _MovieDetailState extends State<MovieDetail> {
+  void onSelected(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => EditMovie(movie: widget.movies,)),
+        );
+        break;
+      case 1:
+        print('delete clicked');
+        break;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(widget.movies);
     return Scaffold(
       appBar: AppBar(
         title: Text("Movie Detail"),
         centerTitle: true,
+        actions: [
+          PopupMenuButton<int>(
+            onSelected: (item) => onSelected(context, item),
+            itemBuilder: (context) => [
+              PopupMenuItem<int>(
+                value: 0,
+                child: Text('Edit Movie'),
+              ),
+              PopupMenuItem<int>(
+                value: 1,
+                child: Text('Delete Movie'),
+              ),
+            ]
+          )
+        ],
       ),
+
       body:ListView(
         padding: EdgeInsets.symmetric(
           horizontal: 30
@@ -25,7 +63,7 @@ class MovieDetail extends StatelessWidget {
               image: DecorationImage(
                 alignment: Alignment.center,
                 fit: BoxFit.fill,
-                image: NetworkImage(movies['thumbnail']),
+                image: NetworkImage(widget.movies['thumbnail']),
               )
             ),
           ),
@@ -51,7 +89,7 @@ class MovieDetail extends StatelessWidget {
                           color: const Color(0xff686868)
                       ),
                       child: Text(
-                        movies['release_year'],
+                        widget.movies['release_year'],
                         style: TextStyle(
                           color: const Color(0xffffffff),
                         ),
@@ -68,7 +106,7 @@ class MovieDetail extends StatelessWidget {
                         color: const Color(0xff686868)
                       ),
                       child: Text(
-                        movies['age_restricted'],
+                        widget.movies['age_restricted'],
                         style: TextStyle(
                           color: const Color(0xffffffff),
                         ),
@@ -85,7 +123,7 @@ class MovieDetail extends StatelessWidget {
                           color: const Color(0xff686868)
                       ),
                       child: Text(
-                        movies['genre'],
+                        widget.movies['genre'],
                         style: TextStyle(
                           color: const Color(0xffffffff),
                         ),
@@ -101,7 +139,7 @@ class MovieDetail extends StatelessWidget {
                           color: const Color(0xff686868)
                       ),
                       child: Text(
-                        movies['season'],
+                        widget.movies['season'],
                         style: TextStyle(
                           color: const Color(0xffffffff),
                         ),
@@ -113,7 +151,7 @@ class MovieDetail extends StatelessWidget {
                   height: 25,
                 ),
                 Text(
-                  movies['title'],
+                  widget.movies['title'],
                   style: TextStyle(
                     fontSize: 25,
                     fontStyle: FontStyle.normal,
@@ -126,7 +164,7 @@ class MovieDetail extends StatelessWidget {
                 ),
                 Text.rich(
                     TextSpan(
-                        text: movies['description'],
+                        text: widget.movies['description'],
                         style: TextStyle(
                             color: const Color(0xffBABFC9),
                             fontWeight: FontWeight.w100
@@ -151,7 +189,7 @@ class MovieDetail extends StatelessWidget {
                   children: <Widget>[
                     Flexible(
                       child: Text(
-                        movies['starring'],
+                        widget.movies['starring'],
                         style: TextStyle(
                           fontWeight: FontWeight.w300,
                           color: const Color(0xffBABFC9),
@@ -178,7 +216,7 @@ class MovieDetail extends StatelessWidget {
                   children: <Widget>[
                     Flexible(
                       child: Text(
-                        movies['director'],
+                        widget.movies['director'],
                         style: TextStyle(
                           fontWeight: FontWeight.w300,
                           color: const Color(0xffBABFC9),

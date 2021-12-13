@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => Movies(),
         ),
-        ChangeNotifierProvider(
-          create: (ctx) => Products(),
-        )
+        // ChangeNotifierProvider(
+        //   create: (ctx) => Products(),
+        // )
     ],
       builder: (context, child) => MaterialApp(
         theme: ThemeData(
@@ -41,11 +41,11 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         home: LoginPage(),
-        routes: {
-          AddProductPage.route: (ctx) => AddProductPage(),
-          EditProductPage.route: (ctx) => EditProductPage(),
-          // MovieDetail.route: (ctx) => MovieDetail(),
-        },
+        // routes: {
+        //   AddProductPage.route: (ctx) => AddProductPage(),
+        //   EditProductPage.route: (ctx) => EditProductPage(),
+        //   // MovieDetail.route: (ctx) => MovieDetail(),
+        // },
       ),
     );
   }

@@ -41,4 +41,71 @@ class Movies with ChangeNotifier{
     }
   }
 
+  saveMovies(String title, String description, String ageRestricted,
+      int releaseYear, String season, String genre, String thumbnail, String actor, String director) async {
+
+    String endpoint = '/movies/create';
+    Uri url = Uri.parse(_urlMaster + endpoint);
+
+    try {
+      await _getToken();
+      var response = await http.post(
+        url,
+        headers: _setHeaders(),
+        body: jsonEncode({
+          'title': title,
+          'description': description,
+          'age_restricted': ageRestricted,
+          'release_year': releaseYear,
+          'season': season,
+          'genre': genre,
+          'thumbnail': thumbnail,
+          'starring': actor,
+          'director': director,
+        })
+      );
+      var responseData = jsonDecode(response.body);
+      print(responseData);
+
+      return responseData;
+
+    } catch (e) {
+      print(e);
+      throw(e);
+    }
+  }
+
+  updateMovies(String title, String description, String ageRestricted,
+      int releaseYear, String season, String genre, String thumbnail, String actor, String director, int trackId) async {
+
+    String endpoint = '/movies/$trackId';
+    Uri url = Uri.parse(_urlMaster + endpoint);
+
+    try {
+      await _getToken();
+      var response = await http.put(
+          url,
+          headers: _setHeaders(),
+          body: jsonEncode({
+            'title': title,
+            'description': description,
+            'age_restricted': ageRestricted,
+            'release_year': releaseYear,
+            'season': season,
+            'genre': genre,
+            'thumbnail': thumbnail,
+            'starring': actor,
+            'director': director,
+          })
+      );
+      var responseData = jsonDecode(response.body);
+      print(responseData);
+
+      return responseData;
+
+    } catch (e) {
+      print(e);
+      throw(e);
+    }
+  }
 }
