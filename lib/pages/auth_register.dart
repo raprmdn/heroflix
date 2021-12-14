@@ -77,97 +77,89 @@ class _RegisterState extends State<Register>{
                 key: _formKey,
                 child: Column(
                   children: [
-                    Container(
-                      child: TextFormField(
-                        autocorrect: false,
-                        autofocus: true,
-                        controller: nameController,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Name",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
+                    TextFormField(
+                      autocorrect: false,
+                      autofocus: true,
+                      controller: nameController,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        labelText: "Name",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        validator: (value) => value.isEmpty ? 'Name is required' : null,
                       ),
+                      validator: (value) => value.isEmpty ? 'Name is required' : null,
                     ),
                     const SizedBox(
                       height: 25,
                     ),
-                    Container(
-                      child: TextFormField(
-                        autocorrect: false,
-                        autofocus: false,
-                        controller: emailController,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Email",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
+                    TextFormField(
+                      autocorrect: false,
+                      autofocus: false,
+                      controller: emailController,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        labelText: "Email",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        validator: (value) => value.isEmpty ? 'Email is required' : null,
                       ),
+                      validator: (value) => value.isEmpty ? 'Email is required' : null,
                     ),
                     const SizedBox(
                       height: 25,
                     ),
-                    Container(
-                      child: TextFormField(
-                        autocorrect: false,
-                        autofocus: false,
-                        obscureText: !passwordVisible,
-                        controller: passwordController,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Password",
-                          suffixIcon: IconButton(
-                            color: textGrey,
-                            splashRadius: 1,
-                            icon: Icon(passwordVisible
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined),
-                            onPressed: togglePassword,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
+                    TextFormField(
+                      autocorrect: false,
+                      autofocus: false,
+                      obscureText: !passwordVisible,
+                      controller: passwordController,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        labelText: "Password",
+                        suffixIcon: IconButton(
+                          color: textGrey,
+                          splashRadius: 1,
+                          icon: Icon(passwordVisible
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined),
+                          onPressed: togglePassword,
                         ),
-                        validator: (value) => value.isEmpty ? 'Password is required' : null,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                       ),
+                      validator: (value) => value.isEmpty ? 'Password is required' : null,
                     ),
                     const SizedBox(
                       height: 25,
                     ),
-                    Container(
-                      child: TextFormField(
-                        autocorrect: false,
-                        autofocus: true,
-                        obscureText: !passwordConfirmationVisible,
-                        controller: passwordConfirmationController,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: "Password Confirmation",
-                          suffixIcon: IconButton(
-                            color: textGrey,
-                            splashRadius: 1,
-                            icon: Icon(passwordConfirmationVisible
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined),
-                            onPressed: () {
-                              setState(() {
-                                passwordConfirmationVisible =
-                                !passwordConfirmationVisible;
-                              });
-                            },
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
+                    TextFormField(
+                      autocorrect: false,
+                      autofocus: true,
+                      obscureText: !passwordConfirmationVisible,
+                      controller: passwordConfirmationController,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        labelText: "Password Confirmation",
+                        suffixIcon: IconButton(
+                          color: textGrey,
+                          splashRadius: 1,
+                          icon: Icon(passwordConfirmationVisible
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined),
+                          onPressed: () {
+                            setState(() {
+                              passwordConfirmationVisible =
+                              !passwordConfirmationVisible;
+                            });
+                          },
                         ),
-                        validator: (value) => value.isEmpty ? 'Password Confirmation is required' : null,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                       ),
+                      validator: (value) => value.isEmpty ? 'Password Confirmation is required' : null,
                     ),
                   ],
                 ),

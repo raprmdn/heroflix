@@ -41,6 +41,26 @@ class Movies with ChangeNotifier{
     }
   }
 
+  showMovies(int trackId) async {
+    String endpoint = '/movies/track/$trackId';
+    Uri url = Uri.parse(_urlMaster + endpoint);
+
+    try {
+      await _getToken();
+      var response = await http.get(
+        url,
+        headers: _setHeaders(),
+      );
+      var responseData = jsonDecode(response.body);
+      print(responseData);
+
+      return responseData;
+    } catch (e) {
+      print(e);
+      throw(e);
+    }
+  }
+
   saveMovies(String title, String description, String ageRestricted,
       int releaseYear, String season, String genre, String thumbnail, String actor, String director) async {
 
@@ -103,6 +123,26 @@ class Movies with ChangeNotifier{
 
       return responseData;
 
+    } catch (e) {
+      print(e);
+      throw(e);
+    }
+  }
+
+  deleteMovies(int trackId) async {
+    String endpoint = '/movies/$trackId';
+    Uri url = Uri.parse(_urlMaster + endpoint);
+
+    try {
+      await _getToken();
+      var response = await http.delete(
+        url,
+        headers: _setHeaders(),
+      );
+      var responseData = jsonDecode(response.body);
+      print(responseData);
+
+      return responseData;
     } catch (e) {
       print(e);
       throw(e);

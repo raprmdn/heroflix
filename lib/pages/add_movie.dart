@@ -53,7 +53,7 @@ class _AddMovieState extends State<AddMovie> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Add Movie'),
+        title: const Text('Add Movie'),
       ),
       body: SafeArea(
         child: Center(
@@ -65,27 +65,27 @@ class _AddMovieState extends State<AddMovie> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       'Add Movie',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xffffffff),
+                        color: Color(0xffffffff),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       autocorrect: false,
                       autofocus: false,
                       controller: titleController,
                       // textInputAction: TextInputAction.next,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Movie Title",
                         filled: true,
                         fillColor: const Color(0xff262c32),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(
@@ -95,7 +95,7 @@ class _AddMovieState extends State<AddMovie> {
                       ),
                       validator: (value) => value.isEmpty ? 'Movie title is required.' : null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       autocorrect: false,
                       autofocus: false,
@@ -104,12 +104,12 @@ class _AddMovieState extends State<AddMovie> {
                       maxLines: null,
                       controller: descriptionController,
                       // textInputAction: TextInputAction.next,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Movie Description",
                         filled: true,
                         fillColor: const Color(0xff262c32),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(
@@ -119,7 +119,7 @@ class _AddMovieState extends State<AddMovie> {
                       ),
                       validator: (value) => value.isEmpty ? 'Movie description is required.' : null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       autocorrect: false,
                       autofocus: false,
@@ -130,7 +130,7 @@ class _AddMovieState extends State<AddMovie> {
                         labelText: "Age Restricted",
                         filled: true,
                         fillColor: const Color(0xff262c32),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(
@@ -140,18 +140,18 @@ class _AddMovieState extends State<AddMovie> {
                       ),
                       validator: (value) => value.isEmpty ? 'Age Restricted is required.' : null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       autocorrect: false,
                       autofocus: false,
                       controller: releaseYearController,
                       keyboardType: TextInputType.number,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Release Year",
                         filled: true,
                         fillColor: const Color(0xff262c32),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(
@@ -161,18 +161,18 @@ class _AddMovieState extends State<AddMovie> {
                       ),
                       validator: (value) => value.isEmpty ? 'Release Year is required.' : null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       autocorrect: false,
                       autofocus: false,
                       controller: seasonController,
                       // textInputAction: TextInputAction.next,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Season",
                         filled: true,
                         fillColor: const Color(0xff262c32),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(
@@ -182,18 +182,18 @@ class _AddMovieState extends State<AddMovie> {
                       ),
                       validator: (value) => value.isEmpty ? 'Season is required.' : null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       autocorrect: false,
                       autofocus: false,
                       controller: genreController,
                       // textInputAction: TextInputAction.next,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Genre",
                         filled: true,
                         fillColor: const Color(0xff262c32),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(
@@ -203,18 +203,18 @@ class _AddMovieState extends State<AddMovie> {
                       ),
                       validator: (value) => value.isEmpty ? 'Genre is required.' : null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       autocorrect: false,
                       autofocus: false,
                       controller: thumbnailController,
                       // textInputAction: TextInputAction.next,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Thumbnail URL",
                         filled: true,
                         fillColor: const Color(0xff262c32),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(
@@ -224,18 +224,18 @@ class _AddMovieState extends State<AddMovie> {
                       ),
                       validator: (value) => value.isEmpty ? 'Thumbnail URL is required.' : null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       autocorrect: false,
                       autofocus: false,
                       controller: actorController,
                       // textInputAction: TextInputAction.next,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Actor",
                         filled: true,
                         fillColor: const Color(0xff262c32),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(
@@ -245,18 +245,18 @@ class _AddMovieState extends State<AddMovie> {
                       ),
                       validator: (value) => value.isEmpty ? 'Actor is required.' : null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFormField(
                       autocorrect: false,
                       autofocus: false,
                       controller: directorController,
                       // textInputAction: TextInputAction.next,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         labelText: "Director",
                         filled: true,
                         fillColor: const Color(0xff262c32),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(
@@ -269,7 +269,7 @@ class _AddMovieState extends State<AddMovie> {
                     Container(
                       width: double.infinity,
                       height: 45,
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         top: 24,
                       ),
                       child: TextButton(
@@ -284,12 +284,12 @@ class _AddMovieState extends State<AddMovie> {
                               borderRadius: BorderRadius.circular(12),
                             )
                         ),
-                        child: Text(
+                        child: const Text(
                           'Submit',
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 18,
-                            color: const Color(0xffffffff),
+                            color: Color(0xffffffff),
                           ),
                         ),
                       ),

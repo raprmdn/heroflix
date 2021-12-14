@@ -1,20 +1,17 @@
 
 import 'package:flutter/material.dart';
-import 'package:heroflix/pages/home_page.dart';
 import 'package:heroflix/providers/movies.dart';
 import 'package:provider/provider.dart';
 
 class EditMovie extends StatefulWidget {
-  @override
-  State<EditMovie> createState() => _AddMovieState();
-
   final Map movie;
   EditMovie({@required this.movie});
+
+  @override
+  State<EditMovie> createState() => _AddMovieState();
 }
 
 class _AddMovieState extends State<EditMovie> {
-  // final Map movies;
-  // EditMovie({@required this.movies});
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController ageRestrictedController = TextEditingController();
@@ -46,16 +43,15 @@ class _AddMovieState extends State<EditMovie> {
       ..removeCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(resp['message'])));
 
-    // Navigator.pop(context);
-    await Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => HomePage(),
-    ));
+    Navigator.pop(context);
+    // await Navigator.of(context).pushReplacement(MaterialPageRoute(
+    //   builder: (context) => HomePage(),
+    // ));
     print(resp);
   }
 
   @override
   Widget build(BuildContext context) {
-    print(widget.movie);
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -65,24 +61,24 @@ class _AddMovieState extends State<EditMovie> {
             child: Center(
               child: ListView(
                 shrinkWrap: true,
-                padding: EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(15.0),
                 children: [
                   Form(
                       key: _formKey,
                       child: Column(
                         children: [
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autocorrect: false,
                             autofocus: false,
                             controller: titleController..text = widget.movie['title'],
                             // textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: "Movie Title",
                               filled: true,
                               fillColor: const Color(0xff262c32),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Colors.white,
                               ),
                               border: OutlineInputBorder(
@@ -92,7 +88,7 @@ class _AddMovieState extends State<EditMovie> {
                             ),
                             validator: (value) => value.isEmpty ? 'Movie title is required.' : null,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autocorrect: false,
                             autofocus: false,
@@ -101,12 +97,12 @@ class _AddMovieState extends State<EditMovie> {
                             maxLines: null,
                             controller: descriptionController..text = widget.movie['description'],
                             // textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: "Movie Description",
                               filled: true,
                               fillColor: const Color(0xff262c32),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Colors.white,
                               ),
                               border: OutlineInputBorder(
@@ -116,18 +112,18 @@ class _AddMovieState extends State<EditMovie> {
                             ),
                             validator: (value) => value.isEmpty ? 'Movie description is required.' : null,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autocorrect: false,
                             autofocus: false,
                             controller: ageRestrictedController..text = widget.movie['age_restricted'],
                             // textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: "Age Restricted",
                               filled: true,
                               fillColor: const Color(0xff262c32),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Colors.white,
                               ),
                               border: OutlineInputBorder(
@@ -137,18 +133,18 @@ class _AddMovieState extends State<EditMovie> {
                             ),
                             validator: (value) => value.isEmpty ? 'Age Restricted is required.' : null,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autocorrect: false,
                             autofocus: false,
                             controller: releaseYearController..text = widget.movie['release_year'],
                             keyboardType: TextInputType.number,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: "Release Year",
                               filled: true,
                               fillColor: const Color(0xff262c32),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Colors.white,
                               ),
                               border: OutlineInputBorder(
@@ -158,18 +154,18 @@ class _AddMovieState extends State<EditMovie> {
                             ),
                             validator: (value) => value.isEmpty ? 'Release Year is required.' : null,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autocorrect: false,
                             autofocus: false,
                             controller: seasonController..text = widget.movie['season'],
                             // textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: "Season",
                               filled: true,
                               fillColor: const Color(0xff262c32),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Colors.white,
                               ),
                               border: OutlineInputBorder(
@@ -179,18 +175,18 @@ class _AddMovieState extends State<EditMovie> {
                             ),
                             validator: (value) => value.isEmpty ? 'Season is required.' : null,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autocorrect: false,
                             autofocus: false,
                             controller: genreController..text = widget.movie['genre'],
                             // textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: "Genre",
                               filled: true,
                               fillColor: const Color(0xff262c32),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Colors.white,
                               ),
                               border: OutlineInputBorder(
@@ -200,18 +196,18 @@ class _AddMovieState extends State<EditMovie> {
                             ),
                             validator: (value) => value.isEmpty ? 'Genre is required.' : null,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autocorrect: false,
                             autofocus: false,
                             controller: thumbnailController..text = widget.movie['thumbnail'],
                             // textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: "Thumbnail URL",
                               filled: true,
                               fillColor: const Color(0xff262c32),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Colors.white,
                               ),
                               border: OutlineInputBorder(
@@ -221,18 +217,18 @@ class _AddMovieState extends State<EditMovie> {
                             ),
                             validator: (value) => value.isEmpty ? 'Thumbnail URL is required.' : null,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autocorrect: false,
                             autofocus: false,
                             controller: actorController..text = widget.movie['starring'],
                             // textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: "Actor",
                               filled: true,
                               fillColor: const Color(0xff262c32),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Colors.white,
                               ),
                               border: OutlineInputBorder(
@@ -242,18 +238,18 @@ class _AddMovieState extends State<EditMovie> {
                             ),
                             validator: (value) => value.isEmpty ? 'Actor is required.' : null,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFormField(
                             autocorrect: false,
                             autofocus: false,
                             controller: directorController..text = widget.movie['director'],
                             // textInputAction: TextInputAction.next,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               labelText: "Director",
                               filled: true,
                               fillColor: const Color(0xff262c32),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                 color: Colors.white,
                               ),
                               border: OutlineInputBorder(
@@ -266,7 +262,7 @@ class _AddMovieState extends State<EditMovie> {
                           Container(
                             width: double.infinity,
                             height: 45,
-                            margin: EdgeInsets.only(
+                            margin: const EdgeInsets.only(
                               top: 24,
                             ),
                             child: TextButton(
@@ -281,12 +277,12 @@ class _AddMovieState extends State<EditMovie> {
                                     borderRadius: BorderRadius.circular(12),
                                   )
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Update',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w300,
                                   fontSize: 18,
-                                  color: const Color(0xffffffff),
+                                  color: Color(0xffffffff),
                                 ),
                               ),
                             ),

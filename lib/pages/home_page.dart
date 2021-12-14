@@ -8,8 +8,6 @@ import 'package:heroflix/providers/movies.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  static const route = "/home";
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -23,8 +21,8 @@ class _HomePageState extends State<HomePage> {
       ..showSnackBar(SnackBar(content: Text(resp['message'])));
 
     await Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => LoginPage(),
-      ));
+      builder: (context) => LoginPage(),
+    ));
   }
 
   _getMovies() async {
@@ -36,14 +34,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
             onPressed: () => _logout()
         ),
-        title: Text("Heroflix"),
+        title: const Text("Heroflix"),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () => Navigator.push(context, MaterialPageRoute(
                 builder: (context) => AddMovie()
             )),
@@ -63,84 +61,88 @@ class _HomePageState extends State<HomePage> {
                   if (index == 0) {
                     return Column(
                       children: [
-                        SizedBox(height: 15,),
+                        const SizedBox(height: 15,),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5,),
                           child: Row(
-                            children: [
+                            children: const [
                               Text(
                                 'Featured Movies',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: const Color(0xffffffff),
+                                  color: Color(0xffffffff),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => MovieDetail(movies: snapshot.data['data'][index]))
-                                );
-                              },
-                              child: Card(
-                                color: const Color(0xff262c32),
-                                shadowColor: const Color(0x8a323250),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(9.0),
-                                ),
-                                elevation: 10,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 150,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(9),
-                                            topLeft: Radius.circular(9),
-                                          ),
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: NetworkImage(snapshot.data['data'][index]['thumbnail'])
-                                          )
-                                      ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => MovieDetail(trackId: snapshot.data['data'][index]['track_id']))
+                              ).then((value) => setState(() {}));
+                            },
+                            child: Card(
+                              color: const Color(0xff262c32),
+                              shadowColor: const Color(0x8a323250),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(9.0),
+                              ),
+                              elevation: 10,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 150,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(9),
+                                          topLeft: Radius.circular(9),
+                                        ),
+                                        image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(snapshot.data['data'][index]['thumbnail'])
+                                        )
                                     ),
-                                    Container(
-                                      padding: const EdgeInsets.all(10),
-                                      height: 150,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    height: 150,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: 248,
+                                          child: Text(
                                             snapshot.data['data'][index]['title']
                                                 + (' (${snapshot.data['data'][index]['release_year']})'),
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: const Color(0xffffffff),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            softWrap: false,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xffffffff),
                                             ),
                                           ),
-                                          SizedBox(height: 10,),
-                                          Container(
-                                            width: 240,
-                                            child: Text(
-                                              snapshot.data['data'][index]['description'],
-                                              style: TextStyle(
-                                                color: const Color(0xffffffff),
-                                              ),
+                                        ),
+                                        const SizedBox(height: 10,),
+                                        SizedBox(
+                                          width: 240,
+                                          child: Text(
+                                            snapshot.data['data'][index]['description'],
+                                            style: const TextStyle(
+                                              color: Color(0xffffffff),
                                             ),
-                                          )
-                                        ],
-                                      ),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -150,68 +152,72 @@ class _HomePageState extends State<HomePage> {
                   } else {
                     return Column(
                       children: [
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => MovieDetail(movies: snapshot.data['data'][index]))
-                                );
-                              },
-                              child: Card(
-                                color: const Color(0xff262c32),
-                                shadowColor: const Color(0x8a323250),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(9.0),
-                                ),
-                                elevation: 7,
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      height: 150,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(9),
-                                            topLeft: Radius.circular(9),
-                                          ),
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: NetworkImage(snapshot.data['data'][index]['thumbnail'])
-                                          )
-                                      ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => MovieDetail(trackId: snapshot.data['data'][index]['track_id']))
+                              ).then((value) => setState(() {}));
+                            },
+                            child: Card(
+                              color: const Color(0xff262c32),
+                              shadowColor: const Color(0x8a323250),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(9.0),
+                              ),
+                              elevation: 7,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 150,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(9),
+                                          topLeft: Radius.circular(9),
+                                        ),
+                                        image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(snapshot.data['data'][index]['thumbnail'])
+                                        )
                                     ),
-                                    Container(
-                                      padding: const EdgeInsets.all(10),
-                                      height: 150,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    height: 150,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: 248,
+                                          child: Text(
                                             snapshot.data['data'][index]['title']
                                                 + (' (${snapshot.data['data'][index]['release_year']})'),
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: const Color(0xffffffff),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            softWrap: false,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xffffffff),
                                             ),
                                           ),
-                                          SizedBox(height: 10,),
-                                          Container(
-                                            width: 240,
-                                            child: Text(
-                                              snapshot.data['data'][index]['description'],
-                                              style: TextStyle(
-                                                color: const Color(0xffffffff),
-                                              ),
+                                        ),
+                                        const SizedBox(height: 10,),
+                                        SizedBox(
+                                          width: 240,
+                                          child: Text(
+                                            snapshot.data['data'][index]['description'],
+                                            style: const TextStyle(
+                                              color: Color(0xffffffff),
                                             ),
-                                          )
-                                        ],
-                                      ),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
