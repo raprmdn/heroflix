@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:heroflix/pages/auth_login.dart';
 import 'package:heroflix/providers/auth.dart';
 import 'package:provider/provider.dart';
-
 import '../theme.dart';
 
 class Register extends StatefulWidget{
@@ -15,6 +13,8 @@ class _RegisterState extends State<Register>{
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmationController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool passwordVisible = false;
   bool passwordConfirmationVisible = false;
@@ -23,13 +23,12 @@ class _RegisterState extends State<Register>{
       passwordVisible = !passwordVisible;
     });
   }
-  final _formKey = GlobalKey<FormState>();
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   save(String name, String email, String password, String passwordConfirmation) async {
     try {
       var resp = await Provider.of<Auth>(context, listen: false).signUp(name, email, password, passwordConfirmation);
       Navigator.pop(context, resp['message']);
+
     } catch(err) {
       if (err['email'] != null) {
         return _showMsg(err['email'].join(', ').toString());

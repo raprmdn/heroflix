@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   _logout() async {
     var resp = await Provider.of<Auth>(context, listen: false).logout();
+
     ScaffoldMessenger.of(context)
       ..removeCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(resp['message'])));
@@ -157,7 +158,8 @@ class _HomePageState extends State<HomePage> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => MovieDetail(trackId: snapshot.data['data'][index]['track_id']))
+                                  MaterialPageRoute(builder: (context) =>
+                                      MovieDetail(trackId: snapshot.data['data'][index]['track_id']))
                               ).then((value) => setState(() {}));
                             },
                             child: Card(
@@ -228,7 +230,13 @@ class _HomePageState extends State<HomePage> {
                 }
             );
           } else {
-            return const Center(child: Text('Error getting data movies.'));
+            return const Center(child: Text(
+                'Error getting data movies.',
+                style: TextStyle(
+                  color: Color(0xffffffff),
+                ),
+              ),
+            );
           }
         }
       ),

@@ -13,6 +13,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool passwordVisible = false;
   bool passwordConfirmationVisible = false;
@@ -21,8 +23,6 @@ class _LoginPageState extends State<LoginPage> {
       passwordVisible = !passwordVisible;
     });
   }
-  final _formKey = GlobalKey<FormState>();
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void _navigateToRegister(BuildContext context) async {
     final result = await Navigator.push(
@@ -121,8 +121,8 @@ class _LoginPageState extends State<LoginPage> {
                           icon: Icon(passwordVisible
                               ? Icons.visibility_outlined
                               : Icons.visibility_off_outlined),
-                          onPressed: togglePassword,
-                        ),
+                            onPressed: togglePassword,
+                          ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),

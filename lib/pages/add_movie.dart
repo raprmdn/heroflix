@@ -19,9 +19,7 @@ class _AddMovieState extends State<AddMovie> {
   TextEditingController thumbnailController = TextEditingController();
   TextEditingController actorController = TextEditingController();
   TextEditingController directorController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
-
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   _submitMovie() async {

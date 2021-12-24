@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:heroflix/providers/movies.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +20,6 @@ class _AddMovieState extends State<EditMovie> {
   TextEditingController thumbnailController = TextEditingController();
   TextEditingController actorController = TextEditingController();
   TextEditingController directorController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 

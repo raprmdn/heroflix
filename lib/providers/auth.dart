@@ -43,14 +43,13 @@ class Auth with ChangeNotifier {
       }
 
       return responseData;
-
     } catch (e) {
       throw(e);
     }
   }
 
   signIn(String email, String password) async {
-    String  endpoint = '/login';
+    String endpoint = '/login';
     Uri url = Uri.parse(_urlMaster + endpoint);
 
     try {

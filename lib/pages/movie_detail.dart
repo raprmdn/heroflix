@@ -14,6 +14,9 @@ class MovieDetail extends StatefulWidget {
 
 class _MovieDetailState extends State<MovieDetail> {
   var movie;
+  _data(Map data) {
+    return movie = data;
+  }
 
   _detailMovies() async {
     return await Provider.of<Movies>(context, listen: false).showMovies(widget.trackId);
@@ -32,10 +35,6 @@ class _MovieDetailState extends State<MovieDetail> {
     ));
   }
 
-  _data(Map data) {
-    return movie = data;
-  }
-
   onSelected(BuildContext context, int item) {
     switch (item) {
       case 0:
@@ -48,7 +47,6 @@ class _MovieDetailState extends State<MovieDetail> {
         break;
     }
   }
-
 
   @override
   Widget build(BuildContext context) {

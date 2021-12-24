@@ -36,7 +36,6 @@ class Movies with ChangeNotifier{
       return responseData;
 
     } catch (e) {
-      print(e);
       throw(e);
     }
   }
@@ -56,14 +55,12 @@ class Movies with ChangeNotifier{
 
       return responseData;
     } catch (e) {
-      print(e);
       throw(e);
     }
   }
 
   saveMovies(String title, String description, String ageRestricted,
       int releaseYear, String season, String genre, String thumbnail, String actor, String director) async {
-
     String endpoint = '/movies/create';
     Uri url = Uri.parse(_urlMaster + endpoint);
 
@@ -88,16 +85,13 @@ class Movies with ChangeNotifier{
       print(responseData);
 
       return responseData;
-
     } catch (e) {
-      print(e);
       throw(e);
     }
   }
 
   updateMovies(String title, String description, String ageRestricted,
       int releaseYear, String season, String genre, String thumbnail, String actor, String director, int trackId) async {
-
     String endpoint = '/movies/$trackId';
     Uri url = Uri.parse(_urlMaster + endpoint);
 
@@ -122,9 +116,7 @@ class Movies with ChangeNotifier{
       print(responseData);
 
       return responseData;
-
     } catch (e) {
-      print(e);
       throw(e);
     }
   }
@@ -144,7 +136,6 @@ class Movies with ChangeNotifier{
 
       return responseData;
     } catch (e) {
-      print(e);
       throw(e);
     }
   }
